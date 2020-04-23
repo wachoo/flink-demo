@@ -1,4 +1,5 @@
 .cache
+.git
 scalastyle-output.xml
 .classpath
 .idea
