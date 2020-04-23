@@ -1,4 +1,4 @@
-package com.wachoo.flink.examples.java.wordcount;
+package com.wachoo.flink.batch.java.wordcount;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;

@@ -1,4 +1,4 @@
-package com.wachoo.flink.examples.java.pagerank;
+package com.wachoo.flink.batch.java.pagerank;
 
 import static org.apache.flink.api.java.aggregation.Aggregations.SUM;
 
@@ -37,7 +37,7 @@ import org.apache.flink.util.Collector;
  * </ul>
  *
  * <p>Usage: <code>PageRankBasic --pages &lt;path&gt; --links &lt;path&gt; --output &lt;path&gt; --numPages &lt;n&gt; --iterations &lt;n&gt;</code><br>
- * If no parameters are provided, the program is run with default data from {@link com.wachoo.flink.examples.java.pagerank.PageRankData} and 10 iterations.
+ * If no parameters are provided, the program is run with default data from {@link PageRankData} and 10 iterations.
  *
  * <p>This example shows how to use:
  * <ul>

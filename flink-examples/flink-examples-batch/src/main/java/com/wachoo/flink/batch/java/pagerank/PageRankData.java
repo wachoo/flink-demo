@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.wachoo.flink.examples.java.pagerank;
+package com.wachoo.flink.batch.java.pagerank;
 
 import java.util.ArrayList;
 import java.util.List;

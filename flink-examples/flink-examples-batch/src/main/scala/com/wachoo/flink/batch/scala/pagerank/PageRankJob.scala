@@ -1,8 +1,8 @@
-package com.wachoo.flink.examples.scala.pagerank
+package com.wachoo.flink.batch.scala.pagerank
 
 import java.lang.Iterable
 
-import com.wachoo.flink.examples.java.pagerank.PageRankData
+import com.wachoo.flink.batch.java.pagerank.PageRankData
 import org.apache.flink.api.common.functions.GroupReduceFunction
 import org.apache.flink.api.java.aggregation.Aggregations.SUM
 import org.apache.flink.api.java.utils.ParameterTool

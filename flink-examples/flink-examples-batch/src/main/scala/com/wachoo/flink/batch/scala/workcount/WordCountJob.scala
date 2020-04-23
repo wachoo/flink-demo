@@ -1,6 +1,6 @@
-package com.wachoo.flink.examples.scala.workcount
+package com.wachoo.flink.batch.scala.workcount
 
-import com.wachoo.flink.examples.java.wordcount.WordCountData
+import com.wachoo.flink.batch.java.wordcount.WordCountData
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.api.scala.ExecutionEnvironment
 import org.apache.flink.api.scala._
@@ -19,7 +19,7 @@ import org.apache.flink.api.scala._
   * }}}
   *
   * If no parameters are provided, the program is run with default data from
-  * [[com.wachoo.flink.examples.java.wordcount.WordCountData]]
+  * [[WordCountData]]
   *
   * This example shows how to:
   *
