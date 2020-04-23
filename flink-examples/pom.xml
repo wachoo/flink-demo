@@ -13,6 +13,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>flink-examples-batch</module>
+    <module>flink-examples-streaming</module>
   </modules>
 
 
