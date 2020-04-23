@@ -4,6 +4,7 @@ import com.wachoo.flink.batch.java.wordcount.WordCountData
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.api.scala.ExecutionEnvironment
 import org.apache.flink.api.scala._
+import org.slf4j.LoggerFactory
 
 
 

@@ -38,6 +38,7 @@ flink-python/dev/.stage.txt
 flink-python/.eggs/
 atlassian-ide-plugin.xml
 out/
+log/
 /docs/api
 /docs/content
 /docs/.bundle

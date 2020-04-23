@@ -7,6 +7,8 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.utils.MultipleParameterTool;
 import org.apache.flink.util.Collector;
 import org.apache.flink.util.Preconditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /***
  * @Author wachoo
@@ -14,7 +16,9 @@ import org.apache.flink.util.Preconditions;
  * @Desc //TODO
  **/
 public class WordCountJob {
-
+    
+    private static final Logger LOG = LoggerFactory.getLogger(WordCountJob.class);
+    
     // *************************************************************************
     //     PROGRAM
     // *************************************************************************
@@ -43,8 +47,8 @@ public class WordCountJob {
             Preconditions.checkNotNull(text, "Input DataSet should not be null.");
         } else {
             // get default test text data
-            System.out.println("Executing WordCount example with default input data set.");
-            System.out.println("Use --input to specify file input.");
+            LOG.info("Executing WordCount example with default input data set.");
+            LOG.info("Use --input to specify file input.");
             text = WordCountData.getDefaultTextLineDataSet(env);
         }
 
@@ -61,7 +65,7 @@ public class WordCountJob {
             // execute program
             env.execute("WordCount Example");
         } else {
-            System.out.println("Printing result to stdout. Use --output to specify output path.");
+            LOG.info("Printing result to stdout. Use --output to specify output path.");
             counts.print();
         }
 
