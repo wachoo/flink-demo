@@ -28,7 +28,7 @@ under the License.
 	</modules>
 	<packaging>pom</packaging>
 
-	<name>Flink Quickstart Job</name>
+	<name>flink-demo</name>
 	<url>http://www.myorganization.org</url>
 
 	<properties>
