@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # start kafka cluster
 cd /Users/bang/kafka_2.11-0.10.2.0
 ./bin/zookeeper-server-start.sh -daemon ./config/zookeeper.properties

@@ -22,7 +22,7 @@ public class TestCsvError {
             ") WITH (\n" +
             "'connector'='filesystem',\n" +
             "'csv.field-delimiter'='|',\n" +
-            "'path'='file:///Users/bang/sourcecode/project/flink-sql-etl/data-generator/src/main/resources/src.csv',\n" +
+            "'path'='file:///Users/wachoo/Documents/workspace/github/flink-sql-etl/data-generator/src/main/resources/src.csv',\n" +
             "'csv.null-literal'='',\n" +
             "'format'='csv'\n" +
             ")";

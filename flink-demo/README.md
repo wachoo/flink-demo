@@ -87,7 +87,7 @@
          );
         
         -- UDF，把 INT(day from epoch) 转为Date
-        create function int2Date as 'udf.Int2DateUDF';
+        create function int2Date as 'udf.Int2Date';
 ```
         
  (b) 结果表从 pg catalog 获取，不用创建

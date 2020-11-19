@@ -23,7 +23,13 @@ import org.apache.flink.table.types.inference.TypeInference;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class Int2DateUDF extends ScalarFunction {
+/***
+ * @Author wachoo
+ * @Date 15:59 2020/11/19
+ * @Desc //TODO
+ **/
+
+public class Int2Date extends ScalarFunction {
 
     public Date eval(int epochDay) {
         return Date.valueOf(LocalDate.ofEpochDay(epochDay));
