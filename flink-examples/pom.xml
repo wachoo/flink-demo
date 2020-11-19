@@ -14,6 +14,7 @@
   <modules>
     <module>flink-examples-batch</module>
     <module>flink-examples-streaming</module>
+    <module>flink-examples-udf</module>
   </modules>
 
 
