@@ -10,6 +10,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>flink-examples-batch</artifactId>
-
-
+  <dependencies>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
+    </dependency>
+  </dependencies>
 </project>
