@@ -33,10 +33,11 @@ under the License.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<flink.version>1.10.0</flink.version>
+		<flink.version>1.14.4</flink.version>
+		<kafka.version>1.13.2</kafka.version>
 		<java.version>1.8</java.version>
-		<scala.binary.version>2.12</scala.binary.version>
-		<scala.version>2.12.4</scala.version>
+		<scala.binary.version>2.11</scala.binary.version>
+		<scala.version>2.11.4</scala.version>
 		<log4j.version>2.13.2</log4j.version>
 		<fastjson.version>1.2.4</fastjson.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>

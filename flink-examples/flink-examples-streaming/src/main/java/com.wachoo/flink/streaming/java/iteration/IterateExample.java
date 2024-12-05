@@ -1,35 +1,18 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.wachoo.flink.streaming.java.iteration;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple5;
 import org.apache.flink.api.java.utils.ParameterTool;
-import org.apache.flink.streaming.api.collector.selector.OutputSelector;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.IterativeStream;
-import org.apache.flink.streaming.api.datastream.SplitStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.ProcessFunction;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.util.Collector;
+import org.apache.flink.util.OutputTag;
 
 /**
  * Example illustrating iterations in Flink streaming.
@@ -83,19 +66,16 @@ public class IterateExample {
 				.iterate(5000);
 
 		// apply the step function to get the next Fibonacci number
-		// increment the counter and split the output with the output selector
-		SplitStream<Tuple5<Integer, Integer, Integer, Integer, Integer>> step = it.map(new Step())
-				.split(new MySelector());
+		// increment the counter and split the output with the process function
+		SingleOutputStreamOperator<Tuple5<Integer, Integer, Integer, Integer, Integer>> step = it.process(new MyProcessFunction());
 
 		// close the iteration by selecting the tuples that were directed to the
-		// 'iterate' channel in the output selector
-		it.closeWith(step.select("iterate"));
-
+		// 'iterate' channel in the process function
+		it.closeWith(step.getSideOutput(new OutputTag<Tuple5<Integer, Integer, Integer, Integer, Integer>>("output") {}));
 		// to produce the final output select the tuples directed to the
 		// 'output' channel then get the input pairs that have the greatest iteration counter
 		// on a 1 second sliding window
-		DataStream<Tuple2<Tuple2<Integer, Integer>, Integer>> numbers = step.select("output")
-				.map(new OutputMap());
+		DataStream<Tuple2<Tuple2<Integer, Integer>, Integer>> numbers = step.getSideOutput(new OutputTag<Tuple5<Integer, Integer, Integer, Integer, Integer>>("output") {}).map(new OutputMap());
 
 		// emit results
 		if (params.has("output")) {
@@ -190,21 +170,21 @@ public class IterateExample {
 	}
 
 	/**
-	 * OutputSelector testing which tuple needs to be iterated again.
+	 * ProcessFunction testing which tuple needs to be iterated again.
 	 */
-	public static class MySelector implements
-            OutputSelector<Tuple5<Integer, Integer, Integer, Integer, Integer>> {
+	public static class MyProcessFunction extends ProcessFunction<Tuple5<Integer, Integer, Integer, Integer, Integer>, Tuple5<Integer, Integer, Integer, Integer, Integer>> {
 		private static final long serialVersionUID = 1L;
 
 		@Override
-		public Iterable<String> select(Tuple5<Integer, Integer, Integer, Integer, Integer> value) {
-			List<String> output = new ArrayList<>();
+		public void processElement(
+				Tuple5<Integer, Integer, Integer, Integer, Integer> value,
+				Context ctx,
+				Collector<Tuple5<Integer, Integer, Integer, Integer, Integer>> out) throws Exception {
 			if (value.f2 < BOUND && value.f3 < BOUND) {
-				output.add("iterate");
+				ctx.output(new OutputTag<Tuple5<Integer, Integer, Integer, Integer, Integer>>("iterate"){}, value);
 			} else {
-				output.add("output");
+				ctx.output(new OutputTag<Tuple5<Integer, Integer, Integer, Integer, Integer>>("output"){}, value);
 			}
-			return output;
 		}
 	}
 
@@ -222,5 +202,4 @@ public class IterateExample {
 			return new Tuple2<>(new Tuple2<>(value.f0, value.f1), value.f4);
 		}
 	}
-
 }
