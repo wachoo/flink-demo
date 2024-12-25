@@ -11,6 +11,9 @@
 
   <artifactId>flink-examples</artifactId>
   <packaging>pom</packaging>
+  <properties>
+    <onnx.version>1.20.0</onnx.version>
+  </properties>
   <modules>
     <module>flink-examples-batch</module>
     <module>flink-examples-streaming</module>

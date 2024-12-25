@@ -29,17 +29,18 @@ under the License.
 	<packaging>pom</packaging>
 
 	<name>flink-demo</name>
-	<url>http://www.myorganization.org</url>
+	<url>http://www.wachoo.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<flink.version>1.14.4</flink.version>
-		<kafka.version>1.13.2</kafka.version>
+		<kafka.version>2.7.0</kafka.version>
 		<java.version>1.8</java.version>
 		<scala.binary.version>2.11</scala.binary.version>
 		<scala.version>2.11.4</scala.version>
 		<log4j.version>2.13.2</log4j.version>
 		<fastjson.version>1.2.4</fastjson.version>
+		<mockito.version>4.0.0</mockito.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
@@ -116,12 +117,12 @@ under the License.
 			<version>${log4j.version}</version>
 		</dependency>
 
-		<!-- log4j2和slf4j桥接依赖 https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-      <version>${log4j.version}</version>
-		</dependency>
+            <!-- log4j2和slf4j桥接依赖 https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
 
 		<!-- slf4j依赖 https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
@@ -129,6 +130,24 @@ under the License.
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
